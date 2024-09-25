@@ -30,12 +30,16 @@ class App extends Component {
   }
 
   addItem = (name, salary) => {
-    const newEmployee = { name, salary, increase: false, rise: false, id: this.maxId++ }
-    this.setState(({ data }) => {
-      return {
-        data: [...data, newEmployee],
-      }
-    })
+    if(name.length > 3 && salary) {
+      const newEmployee = { name, salary, increase: false, rise: false, id: this.maxId++ }
+      this.setState(({ data }) => {
+        return {
+          data: [...data, newEmployee],
+        }
+      })
+    } else {
+      console.error('Имя и зарплата должны быть заполнены')
+    }
   }
 
   onToggleProp = (id, prop) => {
